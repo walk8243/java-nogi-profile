@@ -1,0 +1,23 @@
+version: '3'
+services:
+  web:
+    container_name: web
+    image: openjdk:11
+    command: /bin/sh -c - "while :; do sleep 1000; done"
+    links:
+      - mysql
+  mysql:
+    container_name: mysql
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: vmu71FJ7Y6vB
+      MYSQL_DATABASE: nogizaka
+  client:
+    container_name: mysql-client
+    image: mariadb
+    command: /bin/sh -c - "while :; do mysqladmin -hmysql -pvmu71FJ7Y6vB ping 2>/dev/null; if [ $$? -eq 0 ]; then cat /tmp/ddl/table.sql /tmp/ddl/data.sql | mysql -hmysql -Dnogizaka -pvmu71FJ7Y6vB; break; fi ; sleep 1; done"
+    links:
+      - mysql
+    volumes:
+      - ./ddl:/tmp/ddl:ro

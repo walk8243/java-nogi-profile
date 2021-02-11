@@ -2,10 +2,14 @@ version: '3'
 services:
   web:
     container_name: web
-    image: openjdk:11
-    command: /bin/sh -c - "while :; do sleep 1000; done"
+    image: nogi-profile
+    command: /bin/sh -c - "sleep 5; ./mvnw spring-boot:run"
+    environment:
+      MYSQL_HOST: mysql
     links:
       - mysql
+    ports:
+      - "49146:8080"
   mysql:
     container_name: mysql
     image: mariadb
@@ -13,6 +17,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: vmu71FJ7Y6vB
       MYSQL_DATABASE: nogizaka
+      MYSQL_USER: walk8243
+      MYSQL_PASSWORD: shLG425x
   client:
     container_name: mysql-client
     image: mariadb

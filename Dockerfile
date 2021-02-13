@@ -4,7 +4,7 @@ WORKDIR /app
 COPY mvnw .
 COPY .mvn/ .mvn/
 COPY pom.xml .
-RUN ./mvnw compile
+RUN ./mvnw install -Dmaven.test.skip=true ; echo ""
 COPY src/ src/
 RUN ./mvnw install -Dmaven.test.skip=true
 

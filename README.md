@@ -12,3 +12,18 @@ Nogizaka46 Profile JAVA Appication
 ```
 make up
 ```
+
+### ログの確認
+
+```
+make log
+```
+
+## Graceful Shutdown
+
+`make up` の実行時にプロセスの一覧が表示されます。
+`[PID]` をそこで表示されているPIDに置き換えて実行してください。
+
+```
+docker exec web kill [PID]
+```

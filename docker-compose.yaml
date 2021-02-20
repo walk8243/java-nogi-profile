@@ -3,11 +3,13 @@ services:
   web:
     container_name: web
     image: nogi-profile
-    command: /bin/sh -c - "sleep 5; ./mvnw spring-boot:run"
+    command: /bin/sh -c - "while :; do sleep 30; done"
     environment:
       MYSQL_HOST: mysql
       TZ: 'Asia/Tokyo'
     links:
+      - mysql
+    depends_on:
       - mysql
     ports:
       - "49146:8080"

@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping(path = "/demo")
-public class MainController {
+@RequestMapping(path = "/member")
+public class MemberController {
 	@Autowired
 	private MemberRepository memberRepository;
 
 	@GetMapping(path = "/all")
-	public @ResponseBody Iterable<Member> getAllUsers() {
+	public @ResponseBody Iterable<Member> getAllMembers() {
 		return memberRepository.findAll();
 	}
 }

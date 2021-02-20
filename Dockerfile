@@ -6,6 +6,7 @@ COPY .mvn/ .mvn/
 COPY pom.xml .
 RUN ./mvnw install -Dmaven.test.skip=true ; echo ""
 COPY src/ src/
-RUN ./mvnw install -Dmaven.test.skip=true
+RUN ./mvnw install -Dmaven.test.skip=true &&\
+	ln -s /app/target/nogi-profile-0.0.1-SNAPSHOT.jar /app/nogi-profile.jar
 
-CMD [ "./mvnw", "spring-boot:run" ]
+CMD [ "java", "-jar", "nogi-profile.jar" ]

@@ -1,12 +1,17 @@
+define APP_RUN
+	@docker exec -d nogi-profile.web /bin/sh -c - "java -jar nogi-profile.jar >/var/log/nogi-profile.log 2>&1"
+endef
+
 .PHONY: up run gs logs down clean build
 
 up: build
 	docker-compose up --detach --force-recreate
 	@docker exec nogi-profile.web sleep 5
-	@make run
+	$(call APP_RUN)
+	@echo access to http://localhost:49146/
 
 run:
-	@docker exec -d nogi-profile.web /bin/sh -c - "java -jar nogi-profile.jar >/var/log/nogi-profile.log 2>&1"
+	$(call APP_RUN)
 
 gs:
 	@docker exec nogi-profile.web /bin/bash bin/kill.sh

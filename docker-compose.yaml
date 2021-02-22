@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    container_name: web
+    container_name: nogi-profile.web
     image: nogi-profile
     command: /bin/sh -c - "while :; do sleep 30; done"
     environment:
@@ -13,8 +13,10 @@ services:
       - mysql
     ports:
       - "49146:8080"
+    volumes:
+      - ./docker/web/bin:/app/bin:ro
   mysql:
-    container_name: mysql
+    container_name: nogi-profile.mysql
     image: nogi-profile-mysql
     restart: always
     environment:
@@ -24,7 +26,7 @@ services:
       MYSQL_PASSWORD: shLG425x
       TZ: 'Asia/Tokyo'
   client:
-    container_name: mysql-client
+    container_name: nogi-profile.mysql-client
     image: nogi-profile-mysql
     command: /bin/sh -c - "while :; do mysqladmin -hmysql -pvmu71FJ7Y6vB ping 2>/dev/null; if [ $$? -eq 0 ]; then cat /tmp/ddl/table.sql /tmp/ddl/data.sql | mysql -hmysql -Dnogizaka -pvmu71FJ7Y6vB; break; fi ; sleep 1; done"
     environment:

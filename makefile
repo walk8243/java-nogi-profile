@@ -1,16 +1,18 @@
-.PHONY: up run log down clean build
+.PHONY: up run gs logs down clean build
 
 up: build
 	docker-compose up --detach --force-recreate
-	@docker exec web sleep 5
+	@docker exec nogi-profile.web sleep 5
 	@make run
 
 run:
-	@docker exec -d web /bin/sh -c - "java -jar nogi-profile.jar >/var/log/nogi-profile.log 2>&1"
-	@docker exec web ps ax
+	@docker exec -d nogi-profile.web /bin/sh -c - "java -jar nogi-profile.jar >/var/log/nogi-profile.log 2>&1"
 
-log:
-	@docker exec web tail /var/log/nogi-profile.log -n 30 -f
+gs:
+	@docker exec nogi-profile.web /bin/bash bin/kill.sh
+
+logs:
+	@docker exec nogi-profile.web tail /var/log/nogi-profile.log -n 30 -f
 
 down:
 	docker-compose stop --timeout 1
@@ -20,5 +22,5 @@ clean:
 	docker volume prune --force
 
 build:
-	docker build -t nogi-profile .
-	docker build -t nogi-profile-mysql -f ddl/Dockerfile .
+	docker build -t nogi-profile -f Dockerfile .
+	docker build -t nogi-profile-mysql -f docker/mysql/Dockerfile .

@@ -6,17 +6,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import xyz.walk8243.nogiprofile.model.Member;
-import xyz.walk8243.nogiprofile.repository.MemberRepository;
+import xyz.walk8243.nogiprofile.model.MemberInfo;
+import xyz.walk8243.nogiprofile.repository.MemberInfoRepository;
 
 @Controller
-@RequestMapping(path = "/member")
-public class MemberController {
+@RequestMapping(path = "/member-info")
+public class MemberInfoController {
 	@Autowired
-	private MemberRepository memberRepository;
+	private MemberInfoRepository memberInfoRepository;
 
 	@GetMapping(path = "/all")
-	public @ResponseBody Iterable<Member> getAllMembers() {
-		return memberRepository.findAll();
+	public @ResponseBody Iterable<MemberInfo> getAllMembers() {
+		return memberInfoRepository.findAll();
 	}
 }

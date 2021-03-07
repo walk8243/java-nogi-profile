@@ -15,6 +15,9 @@ public class MemberInfo {
 	@Column(name = "name")
 	private String name;
 
+	@Column(name = "class")
+	private Integer memberClass;
+
 	@Column(name = "birthday")
 	private String birthday;
 
@@ -32,6 +35,14 @@ public class MemberInfo {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Integer getMemberClass() {
+		return memberClass;
+	}
+
+	public void setMemberClass(Integer memberClass) {
+		this.memberClass = memberClass;
 	}
 	
 	public String getBirthday() {

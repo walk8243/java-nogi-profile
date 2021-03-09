@@ -15,11 +15,17 @@ public class MemberInfo {
 	@Column(name = "name")
 	private String name;
 
+	@Column(name = "kana")
+	private String kana;
+
 	@Column(name = "class")
 	private Integer memberClass;
 
 	@Column(name = "birthday")
 	private String birthday;
+
+	@Column(name = "bloodtype")
+	private String bloodtype;
 
 	public Integer getMemberId() {
 		return memberId;
@@ -37,6 +43,14 @@ public class MemberInfo {
 		this.name = name;
 	}
 
+	public String getKana() {
+		return kana;
+	}
+
+	public void setKana(String kana) {
+		this.kana = kana;
+	}
+
 	public Integer getMemberClass() {
 		return memberClass;
 	}
@@ -51,5 +65,13 @@ public class MemberInfo {
 
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
+	}
+	
+	public String getBloodtype() {
+		return bloodtype;
+	}
+
+	public void setBloodtype(String bloodtype) {
+		this.bloodtype = bloodtype;
 	}
 }

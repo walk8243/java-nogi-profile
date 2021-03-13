@@ -16,6 +16,30 @@ CREATE TABLE member_supplement (
 		ON DELETE CASCADE
 ) DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE album (
+	id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	name VARCHAR(128) NOT NULL,
+	PRIMARY KEY (id)
+) DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE song (
+	id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	name VARCHAR(128) NOT NULL,
+	PRIMARY KEY (id)
+) DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE song_table (
+	album_id MEDIUMINT UNSIGNED NOT NULL,
+	song_id MEDIUMINT UNSIGNED NOT NULL,
+	PRIMARY KEY (song_id, album_id),
+	FOREIGN KEY (album_id)
+		REFERENCES album(id)
+		ON DELETE CASCADE,
+	FOREIGN KEY (song_id)
+		REFERENCES song(id)
+		ON DELETE CASCADE
+) DEFAULT CHARSET=utf8mb4;
+
 CREATE VIEW member_info
 	AS SELECT member.id, member.name, member_supplement.kana, member_supplement.class, member_supplement.birthday, member_supplement.bloodtype
 		FROM member

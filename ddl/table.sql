@@ -16,9 +16,10 @@ CREATE TABLE member_supplement (
 		ON DELETE CASCADE
 ) DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE album (
+CREATE TABLE discography (
 	id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	name VARCHAR(128) NOT NULL,
+	type ENUM('SINGLE', 'ALBUM', 'STREAM'),
 	PRIMARY KEY (id)
 ) DEFAULT CHARSET=utf8mb4;
 
@@ -28,12 +29,12 @@ CREATE TABLE song (
 	PRIMARY KEY (id)
 ) DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE song_table (
-	album_id MEDIUMINT UNSIGNED NOT NULL,
+CREATE TABLE songs_on_disc (
+	discography_id MEDIUMINT UNSIGNED NOT NULL,
 	song_id MEDIUMINT UNSIGNED NOT NULL,
-	PRIMARY KEY (song_id, album_id),
-	FOREIGN KEY (album_id)
-		REFERENCES album(id)
+	PRIMARY KEY (song_id, discography_id),
+	FOREIGN KEY (discography_id)
+		REFERENCES discography(id)
 		ON DELETE CASCADE,
 	FOREIGN KEY (song_id)
 		REFERENCES song(id)

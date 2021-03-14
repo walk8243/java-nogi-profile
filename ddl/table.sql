@@ -32,7 +32,9 @@ CREATE TABLE song (
 CREATE TABLE songs_on_disc (
 	discography_id MEDIUMINT UNSIGNED NOT NULL,
 	song_id MEDIUMINT UNSIGNED NOT NULL,
-	PRIMARY KEY (song_id, discography_id),
+	order_no TINYINT UNSIGNED NOT NULL DEFAULT 1,
+	PRIMARY KEY (discography_id, song_id),
+	UNIQUE KEY (discography_id, order_no),
 	FOREIGN KEY (discography_id)
 		REFERENCES discography(id)
 		ON DELETE CASCADE,

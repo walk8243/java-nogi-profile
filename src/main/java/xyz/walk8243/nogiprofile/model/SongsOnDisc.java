@@ -25,6 +25,10 @@ public class SongsOnDisc {
 	private Integer orderNo;
 
 	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "discographyId", referencedColumnName = "id", insertable = false, updatable = false)
+	private Discography discography;
+
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "songId", referencedColumnName = "id", insertable = false, updatable = false)
 	private Song song;
 
@@ -50,6 +54,14 @@ public class SongsOnDisc {
 
 	public void setOrderNo(Integer orderNo) {
 		this.orderNo = orderNo;
+	}
+
+	public Discography getDiscography() {
+		return discography;
+	}
+
+	public void setDiscography(Discography discography) {
+		this.discography = discography;
 	}
 
 	public Song getSong() {

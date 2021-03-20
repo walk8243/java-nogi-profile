@@ -21,7 +21,7 @@ gs:
 	@docker exec nogi-profile.web /bin/bash bin/kill.sh
 
 logs:
-	@docker exec nogi-profile.web tail /var/log/nogi-profile.log -n 30 -f
+	@docker exec nogi-profile.web tail /var/log/nogi-profile.log -n 200 -f
 
 mysql:
 	$(call MYSQL_LOGIN)

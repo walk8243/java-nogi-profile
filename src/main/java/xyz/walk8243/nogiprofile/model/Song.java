@@ -1,12 +1,9 @@
 package xyz.walk8243.nogiprofile.model;
 
-// import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-// import javax.persistence.OneToMany;
 
 @Entity
 public class Song {
@@ -15,9 +12,6 @@ public class Song {
 	private Integer id;
 
 	private String name;
-
-	// @OneToMany(mappedBy = "song")
-	// private List<SongsOnDisc> songsOnDiscList;
 
 	public Integer getId() {
 		return id;

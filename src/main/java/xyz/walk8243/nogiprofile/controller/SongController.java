@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import xyz.walk8243.nogiprofile.model.Song;
+import xyz.walk8243.nogiprofile.model.SongExInfo;
 import xyz.walk8243.nogiprofile.model.SongsOnDisc;
 import xyz.walk8243.nogiprofile.repository.SongRepository;
 import xyz.walk8243.nogiprofile.repository.SongsOnDiscRepository;
@@ -35,7 +36,13 @@ public class SongController {
 	}
 
 	@GetMapping(path = "/discs/{value}")
-	public @ResponseBody List<SongsOnDisc> getOnDiscs(@PathVariable("value") Integer songId) {
-		return songsOnDiscRepository.findBySongId(songId);
+	public @ResponseBody Optional<SongExInfo> getSongExInfo(@PathVariable("value") Integer songId) {
+		Optional<Song> song = songRepository.findById(songId);
+		if(song.isPresent() == false) {
+			return Optional.empty();
+		}
+		List<SongsOnDisc> songsOnDiscsList = songsOnDiscRepository.findBySongId(songId);
+		SongExInfo info = new SongExInfo(song.get(), songsOnDiscsList);
+		return Optional.of(info);
 	}
 }

@@ -1,5 +1,6 @@
 package xyz.walk8243.nogiprofile.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +11,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import xyz.walk8243.nogiprofile.model.Song;
+import xyz.walk8243.nogiprofile.model.SongsOnDisc;
 import xyz.walk8243.nogiprofile.repository.SongRepository;
+import xyz.walk8243.nogiprofile.repository.SongsOnDiscRepository;
 
 @Controller
 @RequestMapping(path = "/song")
 public class SongController {
 	@Autowired
 	private SongRepository songRepository;
+
+	@Autowired
+	private SongsOnDiscRepository songsOnDiscRepository;
 
 	@GetMapping(path = "/all")
 	public @ResponseBody Iterable<Song> getAllSongs() {
@@ -26,5 +32,10 @@ public class SongController {
 	@GetMapping(path = "/{value}")
 	public @ResponseBody Optional<Song> getSong(@PathVariable("value") Integer songId) {
 		return songRepository.findById(songId);
+	}
+
+	@GetMapping(path = "/discs/{value}")
+	public @ResponseBody List<SongsOnDisc> getOnDiscs(@PathVariable("value") Integer songId) {
+		return songsOnDiscRepository.findBySongId(songId);
 	}
 }

@@ -1,4 +1,4 @@
-package xyz.walk8243.nogiprofile;
+package xyz.walk8243.nogiprofile.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

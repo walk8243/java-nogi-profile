@@ -1,4 +1,4 @@
-package xyz.walk8243.nogiprofile.controller;
+package xyz.walk8243.nogiprofile.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import xyz.walk8243.nogiprofile.model.MemberInfo;
-import xyz.walk8243.nogiprofile.repository.MemberInfoRepository;
+import xyz.walk8243.nogiprofile.api.model.MemberInfo;
+import xyz.walk8243.nogiprofile.api.repository.MemberInfoRepository;
 
 @Controller
 @RequestMapping(path = "/member-info")

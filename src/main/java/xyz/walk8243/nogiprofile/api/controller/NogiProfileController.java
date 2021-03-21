@@ -1,4 +1,4 @@
-package xyz.walk8243.nogiprofile.controller;
+package xyz.walk8243.nogiprofile.api.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;

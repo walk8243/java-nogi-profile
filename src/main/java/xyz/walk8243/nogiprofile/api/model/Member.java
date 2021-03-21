@@ -1,4 +1,4 @@
-package xyz.walk8243.nogiprofile.model;
+package xyz.walk8243.nogiprofile.api.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

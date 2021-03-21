@@ -1,4 +1,4 @@
-package xyz.walk8243.nogiprofile.controller;
+package xyz.walk8243.nogiprofile.api.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import xyz.walk8243.nogiprofile.model.Song;
-import xyz.walk8243.nogiprofile.model.SongExInfo;
-import xyz.walk8243.nogiprofile.model.SongsOnDisc;
-import xyz.walk8243.nogiprofile.repository.SongRepository;
-import xyz.walk8243.nogiprofile.repository.SongsOnDiscRepository;
+import xyz.walk8243.nogiprofile.api.model.Song;
+import xyz.walk8243.nogiprofile.api.model.SongExInfo;
+import xyz.walk8243.nogiprofile.api.model.SongsOnDisc;
+import xyz.walk8243.nogiprofile.api.repository.SongRepository;
+import xyz.walk8243.nogiprofile.api.repository.SongsOnDiscRepository;
 
 @Controller
 @RequestMapping(path = "/song")

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>xyz.walk8243</groupId>
-	<artifactId>nogi-profile</artifactId>
+	<artifactId>nogi-profile-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>nogi-profile</name>
+	<name>nogi-profile-api</name>
 	<description>Nogizaka46 Profile Appication</description>
 	<properties>
 		<java.version>11</java.version>

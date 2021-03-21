@@ -1,4 +1,4 @@
-package xyz.walk8243.nogiprofile.model;
+package xyz.walk8243.nogiprofile.api.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,12 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Song {
+public class Discography {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	private String name;
+
+	private String type;
 
 	public Integer getId() {
 		return id;
@@ -27,5 +29,13 @@ public class Song {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 }

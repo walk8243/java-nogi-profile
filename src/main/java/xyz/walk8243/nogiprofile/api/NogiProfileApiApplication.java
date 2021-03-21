@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class NogiProfileApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NogiProfileApplication.class, args);
+		SpringApplication.run(NogiProfileApiApplication.class, args);
 	}
 
 }

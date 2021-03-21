@@ -1,4 +1,4 @@
 .PHONY: build
 
 build:
-	docker build -t nogi-profile -f Dockerfile .
+	docker build -t nogi-profile-api -f Dockerfile .

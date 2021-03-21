@@ -1,12 +1,19 @@
+FROM openjdk:11 AS worker
+
+WORKDIR /usr/local/src
+RUN apt update && apt install maven -y &&\
+	mvn -version
+
+WORKDIR /app
+COPY pom.xml .
+RUN mvn install -Dmaven.test.skip=true ; echo ""
+COPY src/ src/
+RUN mvn install -Dmaven.test.skip=true &&\
+	mv target/nogi-profile-0.0.1-SNAPSHOT.jar nogi-profile.jar
+
 FROM openjdk:11
 
 WORKDIR /app
-COPY mvnw .
-COPY .mvn/ .mvn/
-COPY pom.xml .
-RUN ./mvnw install -Dmaven.test.skip=true ; echo ""
-COPY src/ src/
-RUN ./mvnw install -Dmaven.test.skip=true &&\
-	ln -s /app/target/nogi-profile-0.0.1-SNAPSHOT.jar /app/nogi-profile.jar
+COPY --from=worker /app/nogi-profile.jar .
 
 CMD [ "java", "-jar", "nogi-profile.jar" ]

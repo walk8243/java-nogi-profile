@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DiscographyExInfo extends Discography {
-	private List<Song> songs;
+	private List<SongOnDisc> songs;
 
 	public DiscographyExInfo(Discography discography, List<SongsOnDisc> songsOnDiscsList) {
 		this.setId(discography.getId());
@@ -13,18 +13,36 @@ public class DiscographyExInfo extends Discography {
 		this.setSongs(this.convertToSongsFromSongsOnDiscList(songsOnDiscsList));
 	}
 
-	public List<Song> getSongs() {
+	public List<SongOnDisc> getSongs() {
 		return songs;
 	}
 
-	public void setSongs(List<Song> songs) {
+	public void setSongs(List<SongOnDisc> songs) {
 		this.songs = songs;
 	}
 
-	private List<Song> convertToSongsFromSongsOnDiscList(List<SongsOnDisc> songsOnDiscsList) {
+	private List<SongOnDisc> convertToSongsFromSongsOnDiscList(List<SongsOnDisc> songsOnDiscsList) {
 		return songsOnDiscsList
 			.stream()
-			.map(songsOnDisc -> { return songsOnDisc.getSong(); })
+			.map(songsOnDisc -> {
+				SongOnDisc song = new SongOnDisc();
+				song.setId(songsOnDisc.getSongId());
+				song.setName(songsOnDisc.getSong().getName());
+				song.setOrder(songsOnDisc.getOrderNo());
+				return song;
+			})
 			.collect(Collectors.toList());
+	}
+
+	class SongOnDisc extends Song {
+		private Integer order;
+
+		public Integer getOrder() {
+			return order;
+		}
+	
+		public void setOrder(Integer order) {
+			this.order = order;
+		}
 	}
 }

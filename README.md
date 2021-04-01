@@ -19,6 +19,14 @@ make up
 make logs
 ```
 
+## Development
+
+### 開発中に入力補完が効かなくなったら
+
+```
+gradle eclipse
+```
+
 ## Graceful Shutdown
 
 ```

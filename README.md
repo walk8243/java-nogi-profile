@@ -21,10 +21,16 @@ make logs
 
 ## Development
 
+### 初期設定
+
+```
+make init
+```
+
 ### 開発中に入力補完が効かなくなったら
 
 ```
-gradle eclipse
+make reload
 ```
 
 ## Graceful Shutdown

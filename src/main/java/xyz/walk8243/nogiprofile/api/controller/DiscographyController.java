@@ -12,37 +12,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import xyz.walk8243.nogiprofile.api.model.Discography;
 import xyz.walk8243.nogiprofile.api.model.DiscographyExInfo;
-import xyz.walk8243.nogiprofile.api.model.SongsOnDisc;
-import xyz.walk8243.nogiprofile.api.repository.DiscographyRepository;
-import xyz.walk8243.nogiprofile.api.repository.SongsOnDiscRepository;
+import xyz.walk8243.nogiprofile.api.service.DiscographyService;
 
 @Controller
 @RequestMapping(path = "/disc")
 public class DiscographyController {
 	@Autowired
-	private DiscographyRepository discographyRepository;
-
-	@Autowired
-	private SongsOnDiscRepository songsOnDiscRepository;
+	private DiscographyService discographyService;
 
 	@GetMapping(path = "/all")
-	public @ResponseBody Iterable<Discography> getAllDiscs() {
-		return discographyRepository.findAll();
+	public @ResponseBody List<Discography> getAllDiscs() {
+		return discographyService.getAll();
 	}
 
 	@GetMapping(path = "/{value}")
 	public @ResponseBody Optional<Discography> getDisc(@PathVariable("value") Integer discId) {
-		return discographyRepository.findById(discId);
+		return discographyService.getById(discId);
 	}
 
 	@GetMapping(path = "/songs/{value}")
-	public @ResponseBody Optional<DiscographyExInfo> getSongsOnDisc(@PathVariable("value") Integer discographyId) {
-		Optional<Discography> disc = discographyRepository.findById(discographyId);
-		if(disc.isPresent() == false) {
-			return Optional.empty();
-		}
-		List<SongsOnDisc> songsOnDiscsList = songsOnDiscRepository.findByDiscographyId(discographyId);
-		DiscographyExInfo info = new DiscographyExInfo(disc.get(), songsOnDiscsList);
-		return Optional.of(info);
+	public @ResponseBody Optional<DiscographyExInfo> getSongsOnDisc(@PathVariable("value") Integer discId) {
+		return discographyService.getDiscExInfoById(discId);
 	}
 }

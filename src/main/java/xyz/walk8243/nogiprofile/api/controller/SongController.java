@@ -12,37 +12,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import xyz.walk8243.nogiprofile.api.model.Song;
 import xyz.walk8243.nogiprofile.api.model.SongExInfo;
-import xyz.walk8243.nogiprofile.api.model.SongsOnDisc;
-import xyz.walk8243.nogiprofile.api.repository.SongRepository;
-import xyz.walk8243.nogiprofile.api.repository.SongsOnDiscRepository;
+import xyz.walk8243.nogiprofile.api.service.SongService;
 
 @Controller
 @RequestMapping(path = "/song")
 public class SongController {
 	@Autowired
-	private SongRepository songRepository;
-
-	@Autowired
-	private SongsOnDiscRepository songsOnDiscRepository;
+	private SongService songService;
 
 	@GetMapping(path = "/all")
-	public @ResponseBody Iterable<Song> getAllSongs() {
-		return songRepository.findAll();
+	public @ResponseBody List<Song> getAllSongs() {
+		return songService.getAll();
 	}
 
 	@GetMapping(path = "/{value}")
 	public @ResponseBody Optional<Song> getSong(@PathVariable("value") Integer songId) {
-		return songRepository.findById(songId);
+		return songService.getById(songId);
 	}
 
 	@GetMapping(path = "/discs/{value}")
 	public @ResponseBody Optional<SongExInfo> getSongExInfo(@PathVariable("value") Integer songId) {
-		Optional<Song> song = songRepository.findById(songId);
-		if(song.isPresent() == false) {
-			return Optional.empty();
-		}
-		List<SongsOnDisc> songsOnDiscsList = songsOnDiscRepository.findBySongId(songId);
-		SongExInfo info = new SongExInfo(song.get(), songsOnDiscsList);
-		return Optional.of(info);
+		return songService.getSongExInfoById(songId);
+
 	}
 }

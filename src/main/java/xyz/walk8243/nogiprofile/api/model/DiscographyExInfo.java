@@ -3,22 +3,17 @@ package xyz.walk8243.nogiprofile.api.model;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class DiscographyExInfo extends Discography {
-	private List<SongOnDisc> songs;
+	@Getter @Setter List<SongOnDisc> songs;
 
 	public DiscographyExInfo(Discography discography, List<SongsOnDisc> songsOnDiscsList) {
 		this.setId(discography.getId());
 		this.setName(discography.getName());
 		this.setType(discography.getType());
 		this.setSongs(this.convertToSongsFromSongsOnDiscList(songsOnDiscsList));
-	}
-
-	public List<SongOnDisc> getSongs() {
-		return songs;
-	}
-
-	public void setSongs(List<SongOnDisc> songs) {
-		this.songs = songs;
 	}
 
 	private List<SongOnDisc> convertToSongsFromSongsOnDiscList(List<SongsOnDisc> songsOnDiscsList) {
@@ -35,14 +30,6 @@ public class DiscographyExInfo extends Discography {
 	}
 
 	class SongOnDisc extends Song {
-		private Integer order;
-
-		public Integer getOrder() {
-			return order;
-		}
-	
-		public void setOrder(Integer order) {
-			this.order = order;
-		}
+		@Getter @Setter Integer order;
 	}
 }

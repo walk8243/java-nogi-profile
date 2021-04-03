@@ -3,21 +3,17 @@ package xyz.walk8243.nogiprofile.api.model;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class SongExInfo extends Song {
+	@Getter @Setter
 	private List<Discography> discographies;
 
 	public SongExInfo(Song song, List<SongsOnDisc> songsOnDiscsList) {
 		this.setId(song.getId());
 		this.setName(song.getName());
 		this.setDiscographies(this.convertToDiscographiesFromSongsOnDiscList(songsOnDiscsList));
-	}
-
-	public List<Discography> getDiscographies() {
-		return discographies;
-	}
-
-	public void setDiscographies(List<Discography> discographies) {
-		this.discographies = discographies;
 	}
 
 	private List<Discography> convertToDiscographiesFromSongsOnDiscList(List<SongsOnDisc> songsOnDiscsList) {

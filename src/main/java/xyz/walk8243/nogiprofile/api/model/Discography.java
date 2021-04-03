@@ -5,37 +5,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 public class Discography {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Getter @Setter
 	private Integer id;
 
+	@Getter @Setter
 	private String name;
 
+	@Getter @Setter
 	private String type;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
 }

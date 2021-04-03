@@ -5,73 +5,34 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name="member_info")
 public class MemberInfo {
 	@Id
 	@Column(name = "id")
+	@Getter @Setter
 	private Integer memberId;
 
 	@Column(name = "name")
+	@Getter @Setter
 	private String name;
 
 	@Column(name = "kana")
+	@Getter @Setter
 	private String kana;
 
 	@Column(name = "class")
+	@Getter @Setter
 	private Integer memberClass;
 
 	@Column(name = "birthday")
+	@Getter @Setter
 	private String birthday;
 
 	@Column(name = "bloodtype")
+	@Getter @Setter
 	private String bloodtype;
-
-	public Integer getMemberId() {
-		return memberId;
-	}
-
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getKana() {
-		return kana;
-	}
-
-	public void setKana(String kana) {
-		this.kana = kana;
-	}
-
-	public Integer getMemberClass() {
-		return memberClass;
-	}
-
-	public void setMemberClass(Integer memberClass) {
-		this.memberClass = memberClass;
-	}
-	
-	public String getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
-	}
-	
-	public String getBloodtype() {
-		return bloodtype;
-	}
-
-	public void setBloodtype(String bloodtype) {
-		this.bloodtype = bloodtype;
-	}
 }

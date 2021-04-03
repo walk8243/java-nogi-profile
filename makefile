@@ -5,7 +5,7 @@ define APP_RUN
 endef
 
 define ECLIPSE_LOAD
-	@.\gradlew eclipse
+	@gradlew eclipse
 endef
 
 init:
@@ -19,6 +19,7 @@ run:
 	$(call APP_RUN)
 
 reload:
+	@gradlew cleanEclipse
 	$(call ECLIPSE_LOAD)
 
 gs:

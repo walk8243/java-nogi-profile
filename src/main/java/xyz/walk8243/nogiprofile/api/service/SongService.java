@@ -36,8 +36,10 @@ public class SongService {
 		if(song.isPresent() == false) {
 			return Optional.empty();
 		}
+
+		SongExInfo songExInfo = SongExInfo.cast(song.get());
 		List<SongsOnDisc> songsOnDiscsList = songsOnDiscRepository.findBySongId(songId);
-		SongExInfo info = new SongExInfo(song.get(), songsOnDiscsList);
-		return Optional.of(info);
+		songExInfo.setSongsOnDisc(songsOnDiscsList);
+		return Optional.of(songExInfo);
 	}
 }

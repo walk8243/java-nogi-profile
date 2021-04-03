@@ -10,16 +10,26 @@ public class SongExInfo extends Song {
 	@Getter @Setter
 	private List<Discography> discographies;
 
-	public SongExInfo(Song song, List<SongsOnDisc> songsOnDiscsList) {
-		this.setId(song.getId());
-		this.setName(song.getName());
-		this.setDiscographies(this.convertToDiscographiesFromSongsOnDiscList(songsOnDiscsList));
+	public void setSongsOnDisc(List<SongsOnDisc> songsOnDiscsList) {
+		List<Discography> discs = convertToDiscographiesFromSongsOnDiscList(songsOnDiscsList);
+		setDiscographies(discs);
+	}
+
+	public static SongExInfo cast(Song song) {
+		SongExInfo exInfo = new SongExInfo();
+		exInfo.setId(song.getId());
+		exInfo.setName(song.getName());
+		return exInfo;
 	}
 
 	private List<Discography> convertToDiscographiesFromSongsOnDiscList(List<SongsOnDisc> songsOnDiscsList) {
 		return songsOnDiscsList
 			.stream()
-			.map(songsOnDisc -> { return songsOnDisc.getDiscography(); })
+			.map(songsOnDisc -> convertToDiscographyFromSongsOnDiscList(songsOnDisc))
 			.collect(Collectors.toList());
+	}
+
+	private Discography convertToDiscographyFromSongsOnDiscList(SongsOnDisc songsOnDisc) {
+		return songsOnDisc.getDiscography();
 	}
 }

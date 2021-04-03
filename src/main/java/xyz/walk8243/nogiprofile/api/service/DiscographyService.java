@@ -36,8 +36,10 @@ public class DiscographyService {
 		if(disc.isPresent() == false) {
 			return Optional.empty();
 		}
+
+		DiscographyExInfo discographyExInfo = DiscographyExInfo.cast(disc.get());
 		List<SongsOnDisc> songsOnDiscsList = songsOnDiscRepository.findByDiscographyId(discId);
-		DiscographyExInfo info = new DiscographyExInfo(disc.get(), songsOnDiscsList);
-		return Optional.of(info);
+		discographyExInfo.setSongsOnDisc(songsOnDiscsList);
+		return Optional.of(discographyExInfo);
 	}
 }

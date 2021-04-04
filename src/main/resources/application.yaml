@@ -14,4 +14,9 @@ app:
     host: ${MYSQL_HOST:localhost}
     database: ${MYSQL_DATABASE:nogizaka}
     username: ${MYSQL_USERNAME}
-    password: ${MYSQL_PASSWORD}
+    password: ${MYSQL_PASSWORD:}
+    passkey:
+      group: ${MYSQL_PASSWORD_KEYGORUP:}
+      key: ${MYSQL_PASSWORD_KEYNAME:}
+  keystore:
+    url: ${KEYSTORE_URL}

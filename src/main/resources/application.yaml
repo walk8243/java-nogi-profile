@@ -10,3 +10,8 @@ server:
 
 app:
   name: java-study-nogizaka-api
+  mysql:
+    host: ${MYSQL_HOST:localhost}
+    database: ${MYSQL_DATABASE:nogizaka}
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}

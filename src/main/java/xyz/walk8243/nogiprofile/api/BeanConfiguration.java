@@ -1,6 +1,7 @@
 package xyz.walk8243.nogiprofile.api;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -9,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableConfigurationProperties(AppProperties.class)
 public class BeanConfiguration {
 	@Bean
-	RestTemplate getRestTemplate() {
-		return new RestTemplate();
+	RestTemplate getRestTemplate(RestTemplateBuilder restTemplateBuilder) {
+		return restTemplateBuilder.build();
 	}
 }

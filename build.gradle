@@ -9,17 +9,25 @@ group = 'xyz.walk8243'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+ext {
+	springVersion = '2.3.9.RELEASE'
+	mysqlVersion = '8.0.23'
+	lombokVersion = '1.18.20'
+	logbackVersion = '1.2.3'
+}
+
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-	compileOnly 'org.projectlombok:lombok'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	runtimeOnly 'mysql:mysql-connector-java'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	annotationProcessor 'org.projectlombok:lombok'
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: "$lombokVersion"
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: "$springVersion"
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: "$springVersion"
+	implementation group: 'ch.qos.logback', name: 'logback-access', version: "$logbackVersion"
+	runtimeOnly group: 'mysql', name: 'mysql-connector-java', version: "$mysqlVersion"
+	testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: "$springVersion"
+	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: "$lombokVersion"
 }
 
 test {

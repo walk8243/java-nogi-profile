@@ -15,6 +15,7 @@ public class AppProperties {
 	RestTemplate restTemplate;
 
 	@Getter @Setter private String name = "nogiprofile-api";
+	@Getter @Setter private String env;
 	@Getter private MysqlProperties mysql = new MysqlProperties();
 	@Getter private KeyStoreProperties keystore = new KeyStoreProperties();
 

@@ -4,12 +4,26 @@ spring:
       ddl-auto: update
   lifecycle:
     timeout-per-shutdown-phase: 30s
+  profiles:
+    group:
+      dev:
+        - appdev
+      stg:
+        - appstg
+      prod:
+        - appprod
+      local:
+        - applocal
+      docker:
+        - appdocker
+      default: local
 
 server:
   shutdown: graceful
 
 app:
   name: java-study-nogizaka-api
+  env: none
   mysql:
     host: ${MYSQL_HOST:localhost}
     database: ${MYSQL_DATABASE:nogizaka}

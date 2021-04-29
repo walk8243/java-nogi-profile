@@ -16,6 +16,6 @@ public class NogiProfileController {
 
 	@GetMapping(path = "/")
 	public @ResponseBody String get() {
-		return appProperties.getName() + " OK";
+		return appProperties.getName() + ", " + appProperties.getEnv() + " OK";
 	}
 }
